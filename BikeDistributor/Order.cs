@@ -39,6 +39,11 @@ namespace BikeDistributor
             return GetSubtotalAmount() + GetTaxAmount();
         }
 
+        private string FormatCurrency(double amount)
+        {
+            return amount.ToString("C");
+        }
+
         public void AddLine(Line line)
         {
             _lines.Add(line);
@@ -46,32 +51,32 @@ namespace BikeDistributor
 
         public string Receipt()
         {
-            var result = new StringBuilder(string.Format("Order Receipt for {0}{1}", Company, Environment.NewLine));
+            var result = new StringBuilder($"Order Receipt for {Company}{Environment.NewLine}");
             foreach (var line in _lines)
             {
-                result.AppendLine(string.Format("\t{0} x {1} {2} = {3}", line.Quantity, line.Bike.Brand, line.Bike.Model, line.GetAmount().ToString("C")));
+                result.AppendLine($"\t{line.Quantity} x {line.Bike.Brand} {line.Bike.Model} = {FormatCurrency(line.GetAmount())}");
             }
-            result.AppendLine(string.Format("Sub-Total: {0}", GetSubtotalAmount().ToString("C")));
-            result.AppendLine(string.Format("Tax: {0}", GetTaxAmount().ToString("C")));
-            result.Append(string.Format("Total: {0}", GetTotalAmount().ToString("C")));
+            result.AppendLine($"Sub-Total: {FormatCurrency(GetSubtotalAmount())}");
+            result.AppendLine($"Tax: {FormatCurrency(GetTaxAmount())}");
+            result.Append($"Total: {FormatCurrency(GetTotalAmount())}");
             return result.ToString();
         }
 
         public string HtmlReceipt()
         {
-            var result = new StringBuilder(string.Format("<html><body><h1>Order Receipt for {0}</h1>", Company));
+            var result = new StringBuilder($"<html><body><h1>Order Receipt for {Company}</h1>");
             if (_lines.Any())
             {
                 result.Append("<ul>");
                 foreach (var line in _lines)
                 {
-                    result.Append(string.Format("<li>{0} x {1} {2} = {3}</li>", line.Quantity, line.Bike.Brand, line.Bike.Model, line.GetAmount().ToString("C")));
+                    result.Append($"<li>{line.Quantity} x {line.Bike.Brand} {line.Bike.Model} = {FormatCurrency(line.GetAmount())}</li>");
                 }
                 result.Append("</ul>");
             }
-            result.Append(string.Format("<h3>Sub-Total: {0}</h3>", GetSubtotalAmount().ToString("C")));
-            result.Append(string.Format("<h3>Tax: {0}</h3>", GetTaxAmount().ToString("C")));
-            result.Append(string.Format("<h2>Total: {0}</h2>", GetTotalAmount().ToString("C")));
+            result.Append($"<h3>Sub-Total: {FormatCurrency(GetSubtotalAmount())}</h3>");
+            result.Append($"<h3>Tax: {FormatCurrency(GetTaxAmount())}</h3>");
+            result.Append($"<h2>Total: {FormatCurrency(GetTotalAmount())}</h2>");
             result.Append("</body></html>");
             return result.ToString();
         }

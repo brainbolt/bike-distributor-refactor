@@ -47,7 +47,6 @@ namespace BikeDistributor
         public double GetAmount(int quantity)
         {
             return _pricer.GetAmount(quantity);
-
         }
     }
 }
