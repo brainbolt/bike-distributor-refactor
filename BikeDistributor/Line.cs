@@ -13,31 +13,7 @@
 
         public double GetAmount()
         {
-            double thisAmount = 0d;
-
-            switch (Bike.Price)
-            {
-                case Bike.OneThousand:
-                    if (Quantity >= 20)
-                        thisAmount += Quantity * Bike.Price * .9d;
-                    else
-                        thisAmount += Quantity * Bike.Price;
-                    break;
-                case Bike.TwoThousand:
-                    if (Quantity >= 10)
-                        thisAmount += Quantity * Bike.Price * .8d;
-                    else
-                        thisAmount += Quantity * Bike.Price;
-                    break;
-                case Bike.FiveThousand:
-                    if (Quantity >= 5)
-                        thisAmount += Quantity * Bike.Price * .8d;
-                    else
-                        thisAmount += Quantity * Bike.Price;
-                    break;
-            }
-
-            return thisAmount;
+            return Bike.GetAmount(Quantity);
         }
     }
 }

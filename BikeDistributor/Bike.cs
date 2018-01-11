@@ -16,5 +16,35 @@
         public string Brand { get; private set; }
         public string Model { get; private set; }
         public int Price { get; set; }
+
+        public double GetAmount(int quantity)
+        {
+            double thisAmount = 0d;
+
+            switch (Price)
+            {
+                case Bike.OneThousand:
+                    if (quantity >= 20)
+                        thisAmount += quantity * Price * .9d;
+                    else
+                        thisAmount += quantity * Price;
+                    break;
+                case Bike.TwoThousand:
+                    if (quantity >= 10)
+                        thisAmount += quantity * Price * .8d;
+                    else
+                        thisAmount += quantity * Price;
+                    break;
+                case Bike.FiveThousand:
+                    if (quantity >= 5)
+                        thisAmount += quantity * Price * .8d;
+                    else
+                        thisAmount += quantity * Price;
+                    break;
+            }
+
+            return thisAmount;
+
+        }
     }
 }
