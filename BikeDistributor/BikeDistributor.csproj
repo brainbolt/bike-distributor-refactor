@@ -39,6 +39,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bike.FiveThousandBikePricer.cs" />
+    <Compile Include="Bike.IBikePricer.cs" />
+    <Compile Include="Bike.OneThousandBikePricer.cs" />
+    <Compile Include="Bike.TwoThousandBikePricer.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="Bike.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
