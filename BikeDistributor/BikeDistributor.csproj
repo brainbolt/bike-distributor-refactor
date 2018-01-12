@@ -39,10 +39,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bike.FiveThousandBikePricer.cs" />
-    <Compile Include="Bike.IBikePricer.cs" />
-    <Compile Include="Bike.OneThousandBikePricer.cs" />
-    <Compile Include="Bike.TwoThousandBikePricer.cs" />
+    <Compile Include="BikePricerFactory.cs" />
+    <Compile Include="IBikePricer.cs" />
+    <Compile Include="QuantityBikePricer.cs" />
     <Compile Include="HtmlReceiptCreator.cs" />
     <Compile Include="IBike.cs" />
     <Compile Include="ILine.cs" />
@@ -54,6 +53,7 @@
     <Compile Include="Line.cs" />
     <Compile Include="ReceiptCreatorFactory.cs" />
     <Compile Include="TextReceiptCreator.cs" />
+    <Compile Include="TwentyOffBikePricer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

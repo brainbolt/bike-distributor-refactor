@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Collections.Generic;
 
 namespace BikeDistributor.Test
 {
@@ -11,6 +12,7 @@ namespace BikeDistributor.Test
         {
             var bike = new MockBikeA();
             var line = new Line(bike, 0);
+            line.SetParentOrder(new MockOrder());
 
             Assert.IsFalse(bike.GetHasBeenCalled());
 
@@ -25,6 +27,7 @@ namespace BikeDistributor.Test
             int quantity = 34;
             var bike = new MockBikeB();
             var line = new Line(bike, quantity);
+            line.SetParentOrder(new MockOrder());
             line.GetAmount();
 
             Assert.AreEqual(quantity, bike.GetQuantity());
@@ -41,7 +44,7 @@ namespace BikeDistributor.Test
 
             public int Price => throw new NotImplementedException();
 
-            public double GetAmount(int quantity)
+            public double GetAmount(int quantity, IBikePricer bikePricer)
             {
                 hasBeenCalled = true;
                 return 0d;
@@ -62,7 +65,7 @@ namespace BikeDistributor.Test
 
             public int Price => throw new NotImplementedException();
 
-            public double GetAmount(int quantity)
+            public double GetAmount(int quantity, IBikePricer bikePricer)
             {
                 _quantity = quantity;
                 return 0d;
@@ -71,6 +74,46 @@ namespace BikeDistributor.Test
             public int GetQuantity()
             {
                 return _quantity;
+            }
+        }
+
+        class MockOrder : IOrder
+        {
+            public string Company => throw new NotImplementedException();
+
+            public void AddLine(ILine line)
+            {
+                throw new NotImplementedException();
+            }
+
+            public IReadOnlyCollection<ILine> GetLines()
+            {
+                throw new NotImplementedException();
+            }
+
+            public IBikePricer GetPricer()
+            {
+                return null;
+            }
+
+            public string GetReceipt(IReceiptCreator receiptCreator)
+            {
+                throw new NotImplementedException();
+            }
+
+            public double GetSubtotalAmount()
+            {
+                throw new NotImplementedException();
+            }
+
+            public double GetTaxAmount()
+            {
+                throw new NotImplementedException();
+            }
+
+            public double GetTotalAmount()
+            {
+                throw new NotImplementedException();
             }
         }
 

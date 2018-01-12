@@ -8,9 +8,11 @@ namespace BikeDistributor
     {
         private const double TaxRate = .0725d;
         private readonly IList<ILine> _lines = new List<ILine>();
+        private IBikePricer _bikePricer;
 
-        public Order(string company)
+        public Order(string company, IBikePricer bikePricer = null)
         {
+            if (bikePricer == null) _bikePricer = new BikePricerFactory().MakeBikePricer("default");
             Company = company;
         }
 
@@ -18,6 +20,7 @@ namespace BikeDistributor
 
         public void AddLine(ILine line)
         {
+            line.SetParentOrder(this);
             _lines.Add(line);
         }
 
@@ -52,6 +55,16 @@ namespace BikeDistributor
         public IReadOnlyCollection<ILine> GetLines()
         {
             return new ReadOnlyCollection<ILine>(_lines);
+        }
+
+        public IBikePricer GetPricer()
+        {
+            return _bikePricer;
+        }
+
+        public void SetBikePricer(IBikePricer bikePricer)
+        {
+            _bikePricer = bikePricer;
         }
     }
 }

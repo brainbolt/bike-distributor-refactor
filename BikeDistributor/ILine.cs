@@ -5,5 +5,6 @@
         IBike Bike { get; }
         int Quantity { get; }
         double GetAmount();
+        void SetParentOrder(IOrder parentOrder);
     }
 }

@@ -20,7 +20,7 @@ namespace BikeDistributor
                     creator = new HtmlReceiptCreator();
                     break;
                 default:
-                    throw new ArgumentException($"invalid receipt type: {receiptType}");
+                    throw new ArgumentException($"invalid type: {receiptType}");
             }
 
             return creator;

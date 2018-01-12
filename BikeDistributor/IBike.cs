@@ -5,6 +5,6 @@
         string Brand { get; }
         string Model { get; }
         int Price { get; }
-        double GetAmount(int quantity);
+        double GetAmount(int quantity, IBikePricer bikePricer);
     }
 }

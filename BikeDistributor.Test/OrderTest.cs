@@ -99,6 +99,7 @@ namespace BikeDistributor.Test
         }
 
         #region Mock Objects
+
         class MockLineA : ILine
         {
             private double _amount;
@@ -114,8 +115,12 @@ namespace BikeDistributor.Test
             {
                 return _amount;
             }
-        }
 
+            public void SetParentOrder(IOrder parentOrder)
+            {
+                
+            }
+        }
 
         #endregion
     }

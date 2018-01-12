@@ -11,5 +11,6 @@ namespace BikeDistributor
         double GetSubtotalAmount();
         IReadOnlyCollection<ILine> GetLines();
         void AddLine(ILine line);
+        IBikePricer GetPricer();
     }
 }
