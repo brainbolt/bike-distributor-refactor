@@ -2,7 +2,7 @@
 
 namespace BikeDistributor
 {
-    public partial class Bike
+    public partial class Bike : IBike
     {
         public const int OneThousand = 1000;
         public const int TwoThousand = 2000;
