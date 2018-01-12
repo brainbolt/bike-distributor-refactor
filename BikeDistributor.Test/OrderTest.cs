@@ -86,6 +86,18 @@ namespace BikeDistributor.Test
             Assert.AreEqual(3, order.GetLines().Count);
         }
 
+        [TestMethod]
+        public void Order_AddLine_ShouldIncrement_GetLines_Count_ByOne()
+        {
+            var order = new Order("");
+
+            Assert.AreEqual(0, order.GetLines().Count);
+
+            order.AddLine(new MockLineA(0));
+
+            Assert.AreEqual(1, order.GetLines().Count);
+        }
+
         #region Mock Objects
         class MockLineA : ILine
         {

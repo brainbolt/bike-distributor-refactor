@@ -10,5 +10,6 @@ namespace BikeDistributor
         double GetTotalAmount();
         double GetSubtotalAmount();
         IReadOnlyCollection<ILine> GetLines();
+        void AddLine(ILine line);
     }
 }
